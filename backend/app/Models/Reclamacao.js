@@ -15,6 +15,10 @@ class Reclamacao extends Model {
     imagens() {
         return this.hasMany('App/Models/ImagemReclamacao')
     }
+
+    likes() {
+        return this.hasMany('App/Models/ReclamacaoLike')
+    }
 }
 
 module.exports = Reclamacao

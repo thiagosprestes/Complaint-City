@@ -25,3 +25,5 @@ Route.post('/reclamacao/:id/imagem', 'ImagemReclamacaoController.create').middle
 Route.get('imagens/:path', 'ImagemReclamacaoController.show')
 
 Route.resource('reclamacoes', 'ReclamacaoController').middleware(['auth'])
+
+Route.post('/like/:id', 'ReclamacaoLikeController.like').middleware(['auth'])
