@@ -19,9 +19,7 @@ const Routes = () => (
         <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/registrar" component={Register} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/signup" component={() => <h1>SignUp</h1>} />
-            <PrivateRoute path="/app" component={() => <h1>App</h1>} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
             <Route path="*" component={() => <h1>Page not found</h1>} />
         </Switch>
     </BrowserRouter>

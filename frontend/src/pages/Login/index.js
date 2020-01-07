@@ -11,6 +11,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
+import Header from '../../components/Header'
+
 export default function Login({ history }) {
     const [ email, setEmail ] = useState('')
     const [ password, setSenha ] = useState('')
@@ -26,33 +28,36 @@ export default function Login({ history }) {
                 login(response.data.token)
                 history.push('/dashboard')
             } catch (error) {
-                setErro('Ocorreu um erro ao entrar')
+                setErro('Usuário ou senha incorretos')
             }
         }
     }
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Col md={4}>
-                    <Card>
-                        <Card.Body>
-                            <h3 className="text-center">Login</h3>
-                            <Form onSubmit={handleSignIn}>
-                                <Form.Group>
-                                    <Form.Control type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Control type="password" placeholder="Senha" value={password} onChange={event => setSenha(event.target.value)} />
-                                </Form.Group>
-                                {erro && <Alert variant="danger">{erro}</Alert>}
-                                <Button type="submit" variant="primary" block>Entrar</Button>
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                    <a href="/registrar" className="text-center">Não tem uma conta? registre-se agora mesmo</a>
-                </Col>
-            </Row>
-        </Container>
+            <>
+                <Header />
+                <Container>
+                    <Row className="justify-content-md-center">
+                        <Col md={4}>
+                            <Card>
+                                <Card.Body>
+                                    <h3 className="text-center">Login</h3>
+                                    <Form onSubmit={handleSignIn}>
+                                        <Form.Group>
+                                            <Form.Control type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control type="password" placeholder="Senha" value={password} onChange={event => setSenha(event.target.value)} />
+                                        </Form.Group>
+                                        {erro && <Alert variant="danger">{erro}</Alert>}
+                                        <Button type="submit" variant="primary" block>Entrar</Button>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                            <a href="/registrar" className="text-center">Não tem uma conta? registre-se agora mesmo</a>
+                        </Col>
+                    </Row>
+                </Container>
+            </>
     ) 
 }
