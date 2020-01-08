@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import Header from '../../components/Header';
+import api from '../../services/api'
+
+import Header from '../../components/Header/index';
 import Sidebar from '../../components/Sidebar';
+import Body from '../../components/Body/index'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
 
 export default function Dashboard() {
+    const [posts, setPosts] = useState([])
+    
+    useEffect(() => {
+        async function loadPosts() {
+            const response = await api.get('/reclamacoes')
+
+            setPosts(response.data)
+        }
+
+        loadPosts()
+    }, [])
+
     return(
         <>
             <Header />
-            <Sidebar />
+            <Container>
+                <Row>
+                    <Col xs lg="3">
+                        <Sidebar />
+                    </Col>
+                    <Col lg="8">
+                        <Body name={posts} />
+                    </Col>
+                </Row>
+            </Container>            
         </>
     )
 }

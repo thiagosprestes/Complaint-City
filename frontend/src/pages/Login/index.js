@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
-import Header from '../../components/Header'
+import Header from '../../components/Header/index'
 
 export default function Login({ history }) {
     const [ email, setEmail ] = useState('')

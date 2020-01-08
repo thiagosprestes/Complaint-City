@@ -21,7 +21,7 @@ class ReclamacaoController {
    * @param {View} ctx.view
    */
   async index () {
-    const data = await Reclamacao.query().with('imagens').withCount('likes as ReclamacaoLikes').fetch()
+    const data = await Reclamacao.query().with('users').with('imagens').with('likes').withCount('likes as reclamacaoLikes').orderBy('id', 'desc').fetch()
 
     return data
   }
@@ -49,7 +49,7 @@ class ReclamacaoController {
   async store ({ request, auth }) {
     const { id } = auth.user
 
-    const data = request.only(['endereco', 'categoria', 'descricao'])
+    const data = request.only(['titulo', 'endereco', 'categoria', 'descricao'])
 
     const tarefa = await Reclamacao.create({ ...data, user_id: id })
 

@@ -7,7 +7,7 @@ const Helpers = use('Helpers')
 
 class ImagemReclamacaoController {
     async show({ params, response }) {
-        return response.download(Helpers.tmpPath(`uploads/${params.path}`))
+        return response.download(Helpers.tmpPath(`imagens/${params.path}`))
     }
 
     async create({ params, request, response }) {
