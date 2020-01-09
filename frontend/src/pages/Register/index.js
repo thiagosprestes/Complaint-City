@@ -36,10 +36,9 @@ export default function Register({ history }) {
 
     return (
         <>
-            <Header />
             <Container>
                 <Row className="justify-content-md-center">
-                    <Col md={4}>
+                    <Col lg="8">
                         <Card>
                             <Card.Body>
                                 <h3 className="text-center">Registrar-se</h3>

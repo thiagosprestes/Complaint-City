@@ -35,10 +35,9 @@ export default function Login({ history }) {
 
     return (
             <>
-                <Header />
                 <Container>
                     <Row className="justify-content-md-center">
-                        <Col md={4}>
+                        <Col lg="8">
                             <Card>
                                 <Card.Body>
                                     <h3 className="text-center">Login</h3>

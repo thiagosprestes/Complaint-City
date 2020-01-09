@@ -7,6 +7,12 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 
+import Sidebar from './components/Sidebar'
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 const PrivateRoute = ({ component: Component, ... rest }) => (
     <Route
         {...rest}
@@ -17,10 +23,19 @@ const PrivateRoute = ({ component: Component, ... rest }) => (
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/registrar" component={Register} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <Route path="*" component={() => <h1>Page not found</h1>} />
+            <Container>
+                <Row>
+                    <Col lg="3">
+                        <Sidebar />
+                    </Col>
+                    <Col lg="8">
+                        <Route exact path="/" component={Dashboard} />
+                        <Route exact path="/entrar" component={Login} />
+                        <Route exact path="/registrar" component={Register} />
+                        <Route exact path="*" component={() => <h1>Page not found</h1>} />
+                    </Col>
+                </Row>
+            </Container>        
         </Switch>
     </BrowserRouter>
 )
