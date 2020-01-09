@@ -22,21 +22,21 @@ const PrivateRoute = ({ component: Component, ... rest }) => (
 
 const Routes = () => (
     <BrowserRouter>
-        <Switch>
-            <Container>
-                <Row>
-                    <Col lg="3">
-                        <Sidebar />
-                    </Col>
-                    <Col lg="8">
+        <Container>
+            <Row>
+                <Col lg="3">
+                    <Sidebar />
+                </Col>
+                <Col lg="8">
+                    <Switch>
                         <Route exact path="/" component={Dashboard} />
-                        <Route exact path="/entrar" component={Login} />
-                        <Route exact path="/registrar" component={Register} />
-                        <Route exact path="*" component={() => <h1>Page not found</h1>} />
-                    </Col>
-                </Row>
-            </Container>        
-        </Switch>
+                        <Route path="/entrar" component={Login} />
+                        <Route path="/registrar" component={Register} />
+                        <Route component={() => <h1>Página não encontrada</h1>} />    
+                    </Switch>
+                </Col>
+            </Row>
+        </Container>            
     </BrowserRouter>
 )
 
