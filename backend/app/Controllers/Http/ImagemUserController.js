@@ -7,7 +7,7 @@ const Helpers = use('Helpers')
 
 class ImagemUserController {
     async show({ params, response }) {
-        return response.download(Helpers.tmpPath(`imagens/users/${params.path}`))
+        return response.download(Helpers.tmpPath(`imagens/user/${params.path}`))
     }
 
     async create({ params, request, response }) {
@@ -28,7 +28,7 @@ class ImagemUserController {
                 return imagens.error()
             }
 
-            await ImagemUser.create({ usuario_id: usuario.id, caminho: imagens.fileName })
+            await ImagemUser.create({ user_id: usuario.id, caminho: imagens.fileName })
 
             return response.status(200).send({ message: "Upload realizado com sucesso" })
 

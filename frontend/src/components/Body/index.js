@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Card from 'react-bootstrap/Card'
-import { Username, Endereco, Imagem, Dados, Botoes, Botao, Titulo, Descricao } from './styles'
+import { Author, Username, ImagemUser, Endereco, Imagem, Dados, Botoes, Botao, Titulo, Descricao } from './styles'
 
 export default function Body(props) {
     return(
@@ -11,8 +11,13 @@ export default function Body(props) {
                     <div className="form-group">
                     <Card>
                         <Card.Header>
-                            <Username href="#">{post.users.username}</Username>
-                            <Endereco>{post.endereco}</Endereco>
+                            <Author>
+                                <ImagemUser src={`http://localhost:3333/imagens/users/${post.users.imagemUser.caminho}`} />
+                                <div>
+                                    <Username href="#">{post.users.username}</Username>
+                                    <Endereco>{post.endereco}</Endereco>
+                                </div>
+                            </Author>
                         </Card.Header>
                         {post.imagens.map(imagem => (
                             <li key={imagem.id}>

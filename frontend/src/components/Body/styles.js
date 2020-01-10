@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Author = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
 export const Username = styled.a`
     font-weight: 700;
     font-size: 15px;
@@ -8,6 +13,11 @@ export const Username = styled.a`
         color: #000;
         text-decoration: none;
     }
+`
+
+export const ImagemUser = styled.img`
+    width: 8%;
+    margin-right: 10px;
 `
 
 export const Endereco = styled.text`
