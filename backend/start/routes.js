@@ -18,7 +18,13 @@ const Route = use('Route')
 
 Route.post('/registrar-se', 'AuthController.register')
 
+Route.post('/registrar-se/:id/imagem', 'ImagemUserController.create')
+
+Route.get('/imagens/users/:path', 'ImagemUserController.show')
+
 Route.post('/entrar', 'AuthController.authenticate')
+
+Route.resource('usuarios', 'UserController')
 
 Route.post('/reclamacao/:id/imagem', 'ImagemReclamacaoController.create').middleware(['auth'])
 

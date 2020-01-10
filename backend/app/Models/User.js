@@ -42,6 +42,10 @@ class User extends Model {
   likes() {
     return this.hasMany('App/Models/ReclamacaoLike')
   }
+
+  imagens() {
+    return this.hasOne('App/Models/ImagemUser')
+  }
 }
 
 module.exports = User
