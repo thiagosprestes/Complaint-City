@@ -21,7 +21,7 @@ class UserController {
    * @param {View} ctx.view
    */
   async index () {
-    const data = await User.query().with('imagens').fetch()
+    const data = await User.query().with('imagemUser').fetch()
 
     return data
   }

@@ -21,7 +21,7 @@ class ReclamacaoController {
    * @param {View} ctx.view
    */
   async index () {
-    const data = await Reclamacao.query().with('users').with('imagens').with('likes').withCount('likes as reclamacaoLikes').orderBy('id', 'desc').fetch()
+    const data = await Reclamacao.query().with('users.imagemUser').with('imagens').with('likes').withCount('likes as reclamacaoLikes').orderBy('id', 'desc').fetch()
 
     return data
   }

@@ -21,6 +21,10 @@ class User extends Model {
     })
   }
 
+  static get hidden() {
+    return ['password', 'email']
+  }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
@@ -43,7 +47,7 @@ class User extends Model {
     return this.hasMany('App/Models/ReclamacaoLike')
   }
 
-  imagens() {
+  imagemUser() {
     return this.hasOne('App/Models/ImagemUser')
   }
 }
