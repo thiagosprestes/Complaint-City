@@ -6,6 +6,7 @@ import { isLogged } from './services/auth'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import Reclamacao from './pages/Reclamacao'
 
 import Sidebar from './components/Sidebar'
 
@@ -32,6 +33,7 @@ const Routes = () => (
                         <Route exact path="/" component={Dashboard} />
                         <Route path="/entrar" component={Login} />
                         <Route path="/registrar" component={Register} />
+                        <Route path="/reclamacoes/:id" component={Reclamacao} />
                         <Route component={() => <h1>Página não encontrada</h1>} />    
                     </Switch>
                 </Col>

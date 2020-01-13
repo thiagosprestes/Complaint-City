@@ -65,7 +65,10 @@ class ReclamacaoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ params }) {
+    const data = await Reclamacao.query().with('users.imagemUser').with('imagens').with('likes').withCount('likes as reclamacaoLikes').orderBy('id', 'desc').where('id', params.id).fetch()
+
+    return data 
   }
 
   /**

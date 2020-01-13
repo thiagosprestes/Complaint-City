@@ -16,8 +16,11 @@ export const Username = styled.a`
 `
 
 export const ImagemUser = styled.img`
-    width: 8%;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
+    border-radius: 50px;
+    object-fit: cover;
 `
 
 export const Endereco = styled.text`
@@ -27,7 +30,7 @@ export const Endereco = styled.text`
 
 export const Imagem = styled.img`
     width: 100%;
-    height: auto;
+    height: 100%;
     border-bottom: 1px solid #ccc;
 `
 

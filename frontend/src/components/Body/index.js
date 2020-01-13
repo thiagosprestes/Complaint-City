@@ -3,6 +3,8 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { Author, Username, ImagemUser, Endereco, Imagem, Dados, Botoes, Botao, Titulo, Descricao } from './styles'
 
+import { Link } from 'react-router-dom'
+
 export default function Body(props) {
     return(
         <ul className="list-unstyled">
@@ -29,9 +31,9 @@ export default function Body(props) {
                             <Botao href="">
                                 <i class="fa fa-thumbs-up"></i> Apoiar
                             </Botao>
-                            <Botao href="">
+                            <Link to={`/reclamacoes/${post.id}`} style={{textDecoration: 'none', color: '#000'}}>
                                 <i class="fa fa-share"></i> Compartilhar
-                            </Botao>
+                            </Link>
                         </Botoes>
                         <Card.Body>
                             <Titulo>{post.titulo}</Titulo>
