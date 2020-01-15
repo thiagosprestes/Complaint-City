@@ -18,7 +18,7 @@ export default function Sidebar() {
                             </Link>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Link to="/" className="text-secondary">
+                            <Link to="/reclamar" className="text-secondary">
                                 <span className="fa fa-plus-circle fa-lg" style={{paddingRight: "10px"}}></span> Reclamar
                             </Link>
                         </ListGroup.Item>

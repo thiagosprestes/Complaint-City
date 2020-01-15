@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import api from '../../services/api'
 
@@ -10,13 +10,22 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
-import Header from '../../components/Header/index'
+import { Link } from 'react-router-dom'
+
+import camera from '../../assets/camera.svg'
+
+import './styles.css'
 
 export default function Register({ history }) {
+    const [ imagem, setImagem ] = useState(null)
     const [ email, setEmail ] = useState('')
     const [ username, setUsuario ] = useState('')
     const [ password, setSenha ] = useState('')
     const [ erro, setErro ] = useState('')
+
+    const preview = useMemo(() => {
+        return imagem ? URL.createObjectURL(imagem) : null
+    }, [imagem])
 
     async function handleSignUp(event) {
         event.preventDefault()
@@ -24,9 +33,23 @@ export default function Register({ history }) {
             setErro('Preencha todos os campos')
         } else {
             try {
-                await api.post('/registrar-se', { username, email, password })
-                alert('Usuário cadastrado com sucesso')
-                history.push('/')
+                const response = await api.post('/registrar-se', { username, email, password })
+
+                const imagemData = new FormData()
+
+                imagemData.append('file', imagem)
+          
+                const config = {
+                    headers: {
+                        "content-type": "multipart/form-data"
+                    }
+                }
+
+                await api.post(`/registrar-se/${response.data.id}/imagem`, imagemData, config)
+
+                alert('Usuário cadastrado com sucesso, você pode fazer login agora.')
+
+                history.push('/entrar')
             } catch (error) {
                 console.log(error)
                 setErro('Ocorreu um erro ao registrar-se')
@@ -43,6 +66,13 @@ export default function Register({ history }) {
                             <Card.Body>
                                 <h3 className="text-center">Registrar-se</h3>
                                 <Form onSubmit={handleSignUp}>
+                                    <label id="thumbnail" style={{ backgroundImage: `url(${preview})` }} className={imagem ? 'has-thumbnail' : ''}>
+                                        <input type="file" onChange={event => setImagem(event.target.files[0])} />
+                                        <div id="imagem">
+                                            <img src={camera} alt="Select img"/>
+                                            <p>Selecione uma imagem</p>
+                                        </div>
+                                    </label>
                                     <Form.Group>
                                         <Form.Control type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
                                     </Form.Group>
@@ -57,7 +87,7 @@ export default function Register({ history }) {
                                 </Form>
                             </Card.Body>
                         </Card>
-                        <a href="/" className="text-center">Já tem uma conta? entre agora mesmo</a>
+                        <Link to="/entrar" className="text-center">Já tem uma conta? entre agora mesmo</Link>
                     </Col>
                 </Row>
             </Container>

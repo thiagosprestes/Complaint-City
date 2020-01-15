@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 
-import Header from '../../components/Header/index'
+import { Link } from 'react-router-dom'
 
 export default function Login({ history }) {
     const [ email, setEmail ] = useState('')
@@ -26,7 +26,7 @@ export default function Login({ history }) {
             try {
                 const response = await api.post('/entrar', { email, password })
                 login(response.data.token)
-                history.push('/dashboard')
+                history.push('/')
             } catch (error) {
                 setErro('Usuário ou senha incorretos')
             }
@@ -53,7 +53,7 @@ export default function Login({ history }) {
                                     </Form>
                                 </Card.Body>
                             </Card>
-                            <a href="/registrar" className="text-center">Não tem uma conta? registre-se agora mesmo</a>
+                            <Link to="/registrar" className="text-center">Não tem uma conta? registre-se agora mesmo</Link>
                         </Col>
                     </Row>
                 </Container>

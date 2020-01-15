@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Reclamacao from './pages/Reclamacao'
+import Reclamar from './pages/Reclamar'
 
 import Sidebar from './components/Sidebar'
 
@@ -17,7 +18,7 @@ import Col from 'react-bootstrap/Col'
 const PrivateRoute = ({ component: Component, ... rest }) => (
     <Route
         {...rest}
-        render={ props => isLogged() ? (<Component {...props} />) : (<Redirect to={{ pathname: '/', state: { from: props.location } }} /> )}
+        render={ props => isLogged() ? (<Component {...props} />) : (<Redirect to={{ pathname: '/entrar', state: { from: props.location } }} /> )}
     />
 )
 
@@ -34,6 +35,7 @@ const Routes = () => (
                         <Route path="/entrar" component={Login} />
                         <Route path="/registrar" component={Register} />
                         <Route path="/reclamacoes/:id" component={Reclamacao} />
+                        <PrivateRoute path="/reclamar" component={Reclamar} />
                         <Route component={() => <h1>Página não encontrada</h1>} />    
                     </Switch>
                 </Col>
