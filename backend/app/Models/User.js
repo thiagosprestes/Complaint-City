@@ -21,10 +21,6 @@ class User extends Model {
     })
   }
 
-  static get hidden() {
-    return ['password', 'email']
-  }
-
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
