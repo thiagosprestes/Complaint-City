@@ -49,7 +49,7 @@ export default function Reclamar({ history }) {
 
                 alert('Reclamação registrada com sucesso')
 
-                history.push('/reclamacoes')
+                history.push('/')
 
             } catch (error) {
                 setErro('Ocorreu um erro registrar sua reclamação')

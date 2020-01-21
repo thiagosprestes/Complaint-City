@@ -19,20 +19,17 @@ class ImagemReclamacaoController {
                 size: '1mb'
             })
 
-            await imagens.moveAll(Helpers.tmpPath('imagens'), file => ({
-                name: `${new Date().getTime()}-${file.clientName}`
-            }))
+            await imagens.move(Helpers.tmpPath('imagens'), {
+                name: `${new Date().getTime()}-${imagens.clientName}`
+            })
 
-            if (!imagens.movedAll()) {
-                return imagens.errors()
+            if (!imagens.moved()) {
+                return imagens.error()
             }
 
-            await Promise.all(
-                imagens.movedList().map(item => ImagemReclamacao.create({ reclamacao_id: reclamacao.id, caminho: item.fileName }))
-            )
+            await ImagemReclamacao.create({ reclamacao_id: reclamacao.id, caminho: imagens.fileName })
 
             return response.status(200).send({ message: 'Imagens inseridas com sucesso' })
-
 
         } catch {
             return response.status(500).send({ error: 'Ocorreu um erro ao fazer o upload das imagens.' })
