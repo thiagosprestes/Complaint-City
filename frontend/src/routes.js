@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom'
 
-import { isLogged } from './services/auth'
+import { isLogged, logout } from './services/auth'
 
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -22,12 +22,42 @@ const PrivateRoute = ({ component: Component, ... rest }) => (
     />
 )
 
+const loggedOut = () => {
+    if (window.confirm('Tem certeza que deseja sair?')) {
+        logout()
+        window.location.href = '/'
+    }
+}
+
 const Routes = () => (
     <BrowserRouter>
         <Container>
             <Row>
                 <Col lg="3">
-                    <Sidebar />
+                    {!isLogged() && (
+                    <Sidebar>
+                        <li className="list-group-item">
+                            <Link to="/entrar" className="text-secondary">
+                                <span className="fa fa-sign-in-alt fa-lg" style={{paddingRight: "10px"}}></span> Entrar
+                            </Link>
+                        </li>
+                        <li className="list-group-item">
+                            <Link to="/registrar" className="text-secondary">
+                                <span className="fa fa-user-plus fa-lg" style={{paddingRight: "10px"}}></span> Registrar-se
+                            </Link>
+                        </li>
+                    </Sidebar>
+                    )}
+
+                    {isLogged() && (
+                        <Sidebar>
+                            <li className="list-group-item">
+                                <Link to="#" onClick={loggedOut} className="text-secondary">
+                                    <span className="fa fa-sign-out-alt fa-lg" style={{paddingRight: "10px"}}></span> Sair
+                                </Link>
+                            </li>
+                        </Sidebar>
+                    )}
                 </Col>
                 <Col lg="8">
                     <Switch>

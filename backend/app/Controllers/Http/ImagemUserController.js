@@ -15,23 +15,27 @@ class ImagemUserController {
 
             const usuario = await User.findOrFail(params.id)
 
-            const imagens = request.file('file', {
-                types: ['image'],
-                size: '1mb'
-            })
-        
-            await imagens.move(Helpers.tmpPath('imagens/user'), {
-                name: `${new Date().getTime()}-${imagens.clientName}`
-            })
+            if (request.body.file == 'null') {
+                await ImagemUser.create({ user_id: usuario.id, caminho: 'default-profile-picture.jpg' })
+                return response.status(200).send({ message: "Upload realizado com sucesso" })
+            } else {
+                const imagens = request.file('file', {
+                    types: ['image'],
+                    size: '1mb'
+                })
+            
+                await imagens.move(Helpers.tmpPath('imagens/user'), {
+                    name: `${new Date().getTime()}-${imagens.clientName}`
+                })
 
-            if (!imagens.moved()) {
-                return imagens.error()
+                if (!imagens.moved()) {
+                    return imagens.error()
+                }
+
+                await ImagemUser.create({ user_id: usuario.id, caminho: imagens.fileName })
+
+                return response.status(200).send({ message: "Upload realizado com sucesso" })
             }
-
-            await ImagemUser.create({ user_id: usuario.id, caminho: imagens.fileName })
-
-            return response.status(200).send({ message: "Upload realizado com sucesso" })
-
         } catch {
             return response.status(500).send({ message: "Ocorreu um erro ao realizar o upload da imagem" })
         }

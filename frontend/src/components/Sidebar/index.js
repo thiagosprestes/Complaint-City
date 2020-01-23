@@ -2,13 +2,27 @@ import React from 'react'
 
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Nav from 'react-bootstrap/Nav'
+import profilePicture from '../../assets/default-profile-picture.jpg'
 
 import { Link } from 'react-router-dom'
 
-export default function Sidebar() {
+import { Imagem } from './styles'
+
+export default function Sidebar(props) {
     return(
         <>
+            <Card>
+                <Card.Body>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item className="text-center">
+                            <Imagem src={profilePicture} />
+                            <h5>Olá visitante</h5>
+                            <Link to="/entrar" className="text-secondary">Entre</Link> ou <Link to="/registrar" className="text-secondary">cadastre-se</Link>
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card.Body>
+            </Card>
+            <br />
             <Card>
                 <Card.Body>
                     <ListGroup variant="flush">
@@ -29,16 +43,7 @@ export default function Sidebar() {
             <Card>
                 <Card.Body>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <Link to="/entrar" className="text-secondary">
-                                <span className="fa fa-sign-in-alt fa-lg" style={{paddingRight: "10px"}}></span> Entrar
-                            </Link>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Link to="/registrar" className="text-secondary">
-                                <span className="fa fa-user-plus fa-lg" style={{paddingRight: "10px"}}></span> Registrar-se
-                            </Link>
-                        </ListGroup.Item>
+                        {props.children}
                     </ListGroup>
                 </Card.Body>
             </Card>

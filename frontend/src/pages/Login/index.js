@@ -26,7 +26,7 @@ export default function Login({ history }) {
             try {
                 const response = await api.post('/entrar', { email, password })
                 login(response.data.token)
-                history.push('/')
+                window.location.href = '/'
             } catch (error) {
                 setErro('Usuário ou senha incorretos')
             }
