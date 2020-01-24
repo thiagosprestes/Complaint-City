@@ -14,21 +14,14 @@ export default function Sidebar(props) {
             <Card>
                 <Card.Body>
                     <ListGroup variant="flush">
-                        <ListGroup.Item className="text-center">
-                            <Imagem src={profilePicture} />
-                            <h5>Olá visitante</h5>
-                            <Link to="/entrar" className="text-secondary">Entre</Link> ou <Link to="/registrar" className="text-secondary">cadastre-se</Link>
-                        </ListGroup.Item>
-                    </ListGroup>
-                </Card.Body>
-            </Card>
-            <br />
-            <Card>
-                <Card.Body>
-                    <ListGroup variant="flush">
                         <ListGroup.Item>
                             <Link to="/" className="text-secondary">
                                 <span className="far fa-angry fa-lg" style={{paddingRight: "10px"}}></span> Reclamações
+                            </Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <Link to="/suas-reclamacoes" className="text-secondary">
+                                <span className="far fa-comment-dots fa-lg" style={{paddingRight: "10px"}}></span> Suas reclamações
                             </Link>
                         </ListGroup.Item>
                         <ListGroup.Item>

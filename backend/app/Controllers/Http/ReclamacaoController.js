@@ -102,7 +102,14 @@ class ReclamacaoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, auth, response }) {
+    const data = await Reclamacao.findOrFail(params.id)
+
+    if (data.user_id !== auth.user.id) {
+      return response.status(401)
+    }
+
+    await data.delete()
   }
 }
 
