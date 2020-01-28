@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Card from 'react-bootstrap/Card'
 import { Author, Username, ImagemUser, Endereco, Imagem, Dados, Botoes, Botao, Titulo, Descricao } from './styles'
@@ -17,7 +17,9 @@ export default function Body(props) {
                                 <ImagemUser src={`http://localhost:3333/imagens/users/${post.users.imagemUser.caminho}`} />
                                 <div>
                                     <Username href="#">{post.users.username}</Username>
+                                    <a href={`http://maps.google.com/?q=${post.endereco}`}>
                                     <Endereco>{post.endereco}</Endereco>
+                                    </a>
                                 </div>
                             </Author>
                         </Card.Header>
@@ -31,9 +33,7 @@ export default function Body(props) {
                             <Botao href="">
                                 <i className="fa fa-thumbs-up"></i> Apoiar
                             </Botao>
-                            <Link to={`/reclamacoes/${post.id}`} style={{textDecoration: 'none', color: '#000', marginRight: '20px'}}>
-                                <i className="fa fa-share"></i> Compartilhar
-                            </Link>
+                            <div class="fb-share-button" data-href={`http://localhost:3000/reclamacoes/${post.id}`} data-layout="button" data-size="large"><a target="_blank" href={`http%3A%2F%2Flocalhost%3A3000%2Freclamacoes%2F${post.id}`} class="fb-xfbml-parse-ignore">Compartilhar</a></div>
                         </Botoes>
                         <Card.Body>
                             <Titulo>{post.titulo}</Titulo>
