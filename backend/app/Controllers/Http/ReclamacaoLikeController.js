@@ -7,9 +7,7 @@ class ReclamacaoLikeController {
     async like({ params, auth }) {
         const { id } =  auth.user
 
-        const { data } = params.id
-
-        const reclamacaoLike = await ReclamacaoLike.create({ user_id: id, reclamacao_id: data })
+        const reclamacaoLike = await ReclamacaoLike.create({ user_id: id, reclamacao_id: params.id })
 
         return reclamacaoLike
     }

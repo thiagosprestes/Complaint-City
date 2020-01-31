@@ -42,6 +42,10 @@ export default function ReclamacoesUser() {
         }
     }
 
+    async function apoiar(id) {
+        const response = await api.post(`/like/${id}`)
+    }
+
     return(
         <>
             <h4>Suas reclamações</h4>
@@ -58,7 +62,9 @@ export default function ReclamacoesUser() {
                                             <ImagemUser src={`http://localhost:3333/imagens/users/${post.users.imagemUser.caminho}`} />
                                             <div>
                                                 <Username href="#">{post.users.username}</Username>
-                                                <Endereco>{post.endereco}</Endereco>
+                                                <a href={`http://maps.google.com/?q=${post.endereco}`} target="_blank" style={{textDecoration: 'none', color: '#000'}}>
+                                                    <Endereco>{post.endereco}</Endereco>
+                                                </a>
                                             </div>
                                         </Author>
                                     </Card.Header>
@@ -69,13 +75,10 @@ export default function ReclamacoesUser() {
                                     ))}
                                     <Dados></Dados>
                                     <Botoes>
-                                        <Botao href="">
-                                            <i className="fa fa-thumbs-up"></i> Apoiar
-                                        </Botao>
-                                        <Link to={`/reclamacoes/${post.id}`} style={{textDecoration: 'none', color: '#000', marginRight: '20px'}}>
-                                            <i className="fa fa-share"></i> Compartilhar
-                                        </Link>
-                                        <a onClick={() => handleDelete(post.id)} style={{color: 'red'}}>
+                                        <div class="fb-share-button" data-href={`http://localhost:3000/reclamacoes/${post.id}`} data-layout="button" data-size="large">
+                                            <a target="_blank" href={`http%3A%2F%2Flocalhost%3A3000%2Freclamacoes%2F${post.id}`} class="fb-xfbml-parse-ignore">Compartilhar</a>
+                                        </div>
+                                        <a className="btn btn-danger" onClick={() => handleDelete(post.id)} style={{marginLeft: 20, color: '#FFF'}}>
                                             <i className="fa fa-trash"></i> Excluír
                                         </a>
                                     </Botoes>
